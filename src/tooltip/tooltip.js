@@ -172,9 +172,11 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
             }
 
             function hideTooltipBind () {
-              scope.$apply(function () {
-                hide();
-              });
+              if (!scope.$$phase) {
+                scope.$apply(function () {
+                  hide();
+                });
+              }
             }
 
             // Show the tooltip popup element.
